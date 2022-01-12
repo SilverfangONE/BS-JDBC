@@ -1,4 +1,4 @@
-package de.bs.jdbc.ueb.util;
+package de.bs.jdbc.util;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class MYSQLManager {
     /**
      * Creates Connection with DriverManager with args from property-file
      *
-     * @return established connection
+     * @return established connection object
      * @throws IOException
      * @throws SQLException
      */
