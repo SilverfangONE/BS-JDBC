@@ -13,6 +13,6 @@ public class Jdbc01Connect {
         try {
             Connection con = MYSQLManager.getSessionDB();
         } catch (Exception e) { e.printStackTrace(); }
-        MYSQLManager.close();
+        finally { MYSQLManager.close(); }
     }
 }

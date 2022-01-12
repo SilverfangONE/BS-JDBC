@@ -146,28 +146,29 @@ public class MYSQLManager {
 
     public static class View {
 
+        /**
+         * prints out result set as a table format on the cmd
+         *
+         * @param res result set witch should get printed out
+         * @throws SQLException
+         */
+
         public static void print(ResultSet res) throws SQLException {
 
             ResultSetMetaData meta = res.getMetaData();
 
-            int colsMax = meta.getColumnCount();
+            final int colsMax = meta.getColumnCount();
 
             Table table = new Table(colsMax);
 
-            while(res.next()) {
-                for (int i = 1; i < colsMax; i++) {
-                    /*
-                    Object o = res.getObject(i);
-                    System.out.print("|");
-                    System.out.print(o == null ? "null" : o.toString());
-                    System.out.print("\t");
-                    */
-                    try {
-                        table.addCell(res.getObject(i).toString());
-                    } catch (Exception e) { continue; }
-                }
-                System.out.println("|");
-            }
+            for (int i = 1; i < colsMax; i++)
+                try { table.addCell(meta.getColumnLabel(i)); }
+                catch (Exception e) { table.addCell("null"); };
+
+            while (res.next())
+                for (int i = 1; i <= colsMax; i++)
+                    try { table.addCell(res.getObject(i).toString());}
+                    catch (Exception e) { table.addCell("null"); }
 
             System.out.println(table.render());;
         }

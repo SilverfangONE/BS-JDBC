@@ -7,8 +7,9 @@ import de.bs.jdbc.util.MYSQLManager;
  */
 public class Jdbc02Connect {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
+
             // drop table if exists lieferant
             System.out.println(MYSQLManager.Statements.update("DROP TABLE IF EXISTS LIEFERANT"));
 
@@ -30,5 +31,6 @@ public class Jdbc02Connect {
             }));
         }
         catch (Exception e) { System.out.println(e); }
+        finally { MYSQLManager.close(); }
     }
 }
