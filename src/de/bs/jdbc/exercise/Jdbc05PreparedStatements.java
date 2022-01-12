@@ -6,12 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- * Beispiel: Jdbc05PreparedStatements
- *
- * @author <a href="mailto:mgn.schule@gmx.de">Michael Niedermair</a>
- * @version $Revision: 1537 $
- */
 public class Jdbc05PreparedStatements {
 
    public static void main(final String[] args) {
@@ -23,8 +17,6 @@ public class Jdbc05PreparedStatements {
       PreparedStatement pst = null;
 
       try {
-
-         // 1. Holen einer Connection
          Util.connect("fb2");
          connection = Util.getConnection();
          // 2. Prepared Statement erzeugen
@@ -33,6 +25,7 @@ public class Jdbc05PreparedStatements {
 
          // 3. Werte zuweisen
          // TODO
+         pst.execute();
 
          // 4. Metadaten ermitteln
          // TODO
@@ -44,8 +37,7 @@ public class Jdbc05PreparedStatements {
          System.out.println(e.getMessage());
          e.printStackTrace();
       } finally {
-      //   Util.close(pst);
-      //   Util.close(connection);
+         Util.closeConnection(connection);
       }
    }
 }

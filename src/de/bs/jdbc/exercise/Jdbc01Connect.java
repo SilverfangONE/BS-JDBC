@@ -10,7 +10,7 @@ public class Jdbc01Connect {
         System.out.println("====================");
         System.out.println("MySQL JDBC-Treiber geladen!");
 
-        Util.connect("javatest");
+//        Util.connect("javatest");
         Connection connection = Util.getConnection();
         Util.showConnectionMetaData(connection);
 

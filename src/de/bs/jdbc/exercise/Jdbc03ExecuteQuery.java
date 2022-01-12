@@ -7,25 +7,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 /**
- * Beispiel: Jdbc03ExecuteQuery
+ * Jdbc03ExecuteQuery
  *
- * @author <a href="mailto:mgn.schule@gmx.de">Michael Niedermair</a>
- * @version $Revision: 1117 $
+ * @author kaoeclya | Robin
  */
 public class Jdbc03ExecuteQuery {
 
     public static void main(final String[] args) {
-
-        System.out.println("JDBC Execute Query");
-        System.out.println("==================");
+        System.out.println("JDBC Execute Query\n==================");
 
         Connection connection = null;
         Statement statement;
 
         try {
-            Util.connect("javatest");
             connection = Util.getConnection();
             statement = connection.createStatement();
 

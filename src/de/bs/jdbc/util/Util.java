@@ -11,7 +11,16 @@ public class Util {
     private static Connection connection = null;
 
     public static Connection getConnection() {
-        return connection;
+        if (connection != null) {
+            return connection;
+        } else {
+            return defaultConnection();
+        }
+    }
+
+    private static Connection defaultConnection() {
+        connect(getProperty("db.defaultdb"));
+        return getConnection();
     }
 
     public static void connect(String db) {
@@ -20,7 +29,7 @@ public class Util {
             connection = DriverManager.getConnection(
                     urlBuilder, getProperty("db.user"), getProperty("db.password"));
             System.out.println("Connection opened!");
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
@@ -35,10 +44,15 @@ public class Util {
         }
     }
 
-    public static String getProperty(String name) throws IOException {
-        Properties prop = new Properties();
-        prop.load(new FileReader("props/mariadb.properties"));
-        return prop.getProperty(name);
+    public static String getProperty(String name) {
+        try {
+            Properties prop = new Properties();
+            prop.load(new FileReader("props/mariadb.properties"));
+            return prop.getProperty(name);
+        } catch (IOException e) {
+            System.out.println("Exception: Could not find property or property file!");
+            return "";
+        }
     }
 
     public static void showResultSet(ResultSet resultSet) {
@@ -47,12 +61,16 @@ public class Util {
             final int colmax = meta.getColumnCount();
             final Table t = new Table(colmax);
             for (int col = 1; col <= colmax; col++) {
-                t.addCell(resultSet.getMetaData().getColumnLabel(col));
+                t.addCell(meta.getColumnLabel(col));
             }
             while (resultSet.next()) {
                 for (int col = 1; col <= colmax; col++) {
-                    final Object o = resultSet.getObject(col);
-                    t.addCell(o.toString());
+                    Object o = resultSet.getObject(col);
+                    if (o == null) {
+                        t.addCell("");
+                    } else {
+                        t.addCell(o.toString());
+                    }
                 }
             }
             System.out.println(t.render());

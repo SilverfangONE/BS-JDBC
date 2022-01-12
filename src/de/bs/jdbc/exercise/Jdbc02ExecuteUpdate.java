@@ -5,25 +5,19 @@ import de.bs.jdbc.util.Util;
 import java.sql.*;
 
 /**
- * Beispiel: Jdbc02ExecuteUpdate
+ * Jdbc02ExecuteUpdate
  *
- * @author <a href="mailto:mgn.schule@gmx.de">Michael Niedermair</a>
- * @version $Revision: 1117 $
+ * @author kaoeclya | Robin
  */
-
-@SuppressWarnings("SqlResolve")
 public class Jdbc02ExecuteUpdate {
 
     public static void main(final String[] args) throws SQLException {
-
-        System.out.println("JDBC Execute Update");
-        System.out.println("===================");
+        System.out.println("JDBC Execute Update\n===================");
 
         Connection connection = null;
         Statement statement = null;
 
         try {
-            Util.connect("javaTest");
             connection = Util.getConnection();
             statement = connection.createStatement();
 
