@@ -11,9 +11,6 @@ public class Jdbc02Connect {
 
     public static void main(String[] args) {
         try {
-
-            Connection session = MYSQLManager.getSessionDB();
-
             // drop table if exists lieferant
             System.out.println(MYSQLManager.Statements.update("DROP TABLE IF EXISTS LIEFERANT"));
 

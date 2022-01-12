@@ -131,8 +131,21 @@ public class MYSQLManager {
      */
 
     public static class View {
-        print(ResultSet res){
+        public static void print(ResultSet res) throws SQLException {
 
+            ResultSetMetaData meta = res.getMetaData();
+
+            int tableCols = meta.getColumnCount();
+
+            while(res.next()) {
+                for (int i = 1; i <= tableCols; i++) {
+                    Object o = res.getObject(i);
+                    System.out.print("|");
+                    System.out.print(o == null ? "null" : o.toString());
+                    System.out.print("\t");
+                }
+                System.out.println("|");
+            }
         }
     }
 

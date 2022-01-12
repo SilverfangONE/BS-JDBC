@@ -9,8 +9,10 @@ import java.sql.Connection;
  */
 public class Jdbc01Connect {
 
-    public static void main(String[] args) {
-        try { Connection con = MYSQLManager.getSessionDB(); }
-        catch (Exception e) { e.printStackTrace(); }
+    public static void main(String[] args) throws Exception {
+        try {
+            Connection con = MYSQLManager.getSessionDB();
+        } catch (Exception e) { e.printStackTrace(); }
+        MYSQLManager.close();
     }
 }
