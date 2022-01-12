@@ -1,4 +1,4 @@
-package de.nm.jdbc.ueb.util;
+package de.bs.jdbc.ueb.util;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -44,6 +44,17 @@ public class MYSQLManager {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * reconnect to database if the session was closed
+     *
+     * @return boolean
+     */
+
+    public static boolean openSession() {
+        // TODO
+        return false;
     }
 
     /**

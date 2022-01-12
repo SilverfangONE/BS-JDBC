@@ -1,6 +1,6 @@
-package de.nm.jdbc.ueb.exercises;
+package de.bs.jdbc.ueb.exercises;
 
-import de.nm.jdbc.ueb.util.MYSQLManager;
+import de.bs.jdbc.ueb.util.MYSQLManager;
 
 import java.sql.Connection;
 
