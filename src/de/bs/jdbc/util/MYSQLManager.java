@@ -1,5 +1,8 @@
 package de.bs.jdbc.util;
 
+import org.nocrala.tools.texttablefmt.Table;
+
+import javax.print.attribute.standard.RequestingUserName;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -142,21 +145,31 @@ public class MYSQLManager {
      */
 
     public static class View {
+
         public static void print(ResultSet res) throws SQLException {
 
             ResultSetMetaData meta = res.getMetaData();
 
-            int tableCols = meta.getColumnCount();
+            int colsMax = meta.getColumnCount();
+
+            Table table = new Table(colsMax);
 
             while(res.next()) {
-                for (int i = 1; i <= tableCols; i++) {
+                for (int i = 1; i < colsMax; i++) {
+                    /*
                     Object o = res.getObject(i);
                     System.out.print("|");
                     System.out.print(o == null ? "null" : o.toString());
                     System.out.print("\t");
+                    */
+                    try {
+                        table.addCell(res.getObject(i).toString());
+                    } catch (Exception e) { continue; }
                 }
                 System.out.println("|");
             }
+
+            System.out.println(table.render());;
         }
     }
 

@@ -14,7 +14,7 @@ public class jdbc03Connect {
         try {
             Connection con = MYSQLManager.getSessionDB();
 
-            System.out.println(MYSQLManager.Statements.query("desc LIEFERANT"));
+            MYSQLManager.View.print(MYSQLManager.Statements.query("desc LIEFERANT"));
             MYSQLManager.View.print(MYSQLManager.Statements.query("SELECT * FROM LIEFERANT ORDER BY id DESC"));
         } catch (Exception e) { e.printStackTrace(); }
     }
