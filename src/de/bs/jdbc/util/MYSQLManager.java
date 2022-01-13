@@ -5,6 +5,7 @@ import org.nocrala.tools.texttablefmt.Table;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.Properties;
 
 /**
@@ -88,7 +89,7 @@ public class MYSQLManager {
     }
 
     /**
-     * Convert MetaData from current session connection to a string
+     * Convert MetaData from current session consnection to a string
      *
      * @return MetaData from current MySQL-DB Session
      * @throws SQLException
@@ -198,6 +199,20 @@ public class MYSQLManager {
             return session.createStatement().executeQuery(statement);
         }
 
+        /**
+         * executes SQL-Statement as Query with opts
+         *
+         * @param statement sql-statement
+         * @param pointerOpt pointer behaviour
+         * @param editMode read only or updatable
+         * @return Set with result data
+         * @throws SQLException
+         */
+
+        public static ResultSet query(String statement, int pointerOpt, int editMode) throws SQLException {
+            return session.createStatement(pointerOpt, editMode).executeQuery(statement);
+        }
+
         // update
 
         /**
@@ -240,4 +255,5 @@ public class MYSQLManager {
             return st.executeBatch();
         }
     }
+
 }
