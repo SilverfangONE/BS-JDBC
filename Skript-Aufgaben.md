@@ -1,24 +1,26 @@
-Wo für stet JDBC?
+qWo für stet JDBC?
 
-    - Java Database Connectivity
-
+    
+    Java Database Connectivity
+___
 Welche vier JDBC-Treiber gibt es ?
 
     - JDBC-ODBC
     - Native Partly
     - JDBC-Net
     - Pure-Java
-
+___
 Welche Vorteile/Nachteil bietet die JDBC-ODBC Bridge ?
 
 	- Vorteile:
 		- easy to use
 		- can be easily connected to any database
 
+
 	- Nachteile:
 		- Performance degraded because JDBC method call is converted into the ODBC function calls.
 		- The ODBC driver need to be installed on the client machine
-
+___
 Welche Vorteile/Nachteile bietet der Native-Partly-Treiber ?
 
 	- Vorteile:
@@ -27,7 +29,7 @@ Welche Vorteile/Nachteile bietet der Native-Partly-Treiber ?
 	- Nachteile:
 		- The Native driver needs to be installed on each client machine
 		- The Vendor client libary needs to be installed on client machine
-
+___
 Welche Vorteile/Nachteile bietet der JDBC-Net-Treiber ?
 
 	- Vorteile:
@@ -39,24 +41,78 @@ Welche Vorteile/Nachteile bietet der JDBC-Net-Treiber ?
 		- Requires database-specific coding to be done middle tier.
 		- Maintenace of Network Protocol driver becomes costly because it
  		  requires database-specific coding to be done in the middle tier.
-
+___
 Welche Vorteile/Nachteile bietet der Pure-Java-Treiber (thin-driver) ?
-
+yyol
 	- Vorteile:
-		- Completely implemented in Java to achieve platform independence.
+        ( Schnell )
+        - Completely implemented in Java to achieve platform independence.
 		- These drivers don't translate the requests into an intermediary format (such as ODBC)
 		- The client application connects directly to the database server. No translation or middleware layers are used, improving performance.
 		- The JVM can manage all aspects of the application-to-database connection; this can facilitate debugging.
 
     - Nachteile:
+        ( Aufwand )
 	    - (Database depence) Drivers are database specific, as different database vendors use widely different (and usually proprietary) network protocols.
+___
+Welche JDBC-Version unterstützt java ?
 
+    - ojdbc8
+___
+Wie lautet der volle Name des JDBC-Treibers für MySQL ?
+
+    - com.mysql.cj.jdbc.Driver
+___
+Wie lautet die DB-URI für den Zugriff auf die DB "BEISPIEL" auf dem lokalen Rechner ?
+
+    - jdbc:mysql://localhost:3306/BEISPIEL
+___
 Beim Verbindungsaufbau wird gemeldet, dass der Treiber nicht geladen werden kann.
 Was könnte hierfür die Ursache sein ?
 
     - Das die JAR-Datei nicht im Build-in-Path geladen/ gefunden worden ist.
-
+    - Jar existiert nicht
+___
 Mit der Klasse DatabaseMetaData können Metadaten der Verbindung ermittelt werden. Suchen Sie
-in der API die wichtigsten Infromationen heraus, die Sie damit ermitteln können ?
+in der API die wichtigsten Informationen heraus, die Sie damit ermitteln können ?
 
-    -
+    - metaData = con.getMetaData()
+    - metaData.getDatabaseProductName()
+    - metaData.getDatabaseProductVersion()
+    - metaData.getDriverName()
+___
+Wie lautet der Aufruf, um ein Query-Statement an die DB zu senden ?
+
+    st.excuteQuery(String sql)
+    (Statement)
+___
+Wie lautet der Aufruf, um ein Update-Statement an die DB zu senden ?
+
+    st.excuteUpdate(String sql)
+    (Statement)
+___
+Sie führen SQL-Statemnts aus, die Sie aus einer Datei lesen. Wie ermitteln Sie, ob Sie damit ein ResultSet erhalten ?
+    
+    - st.execute(String sql)
+    (Statement)
+    - boolean hasResult = st.excute(String sql)
+    - st.getResultSet()
+___
+Wie erhalten Sie zusätzliche Informationen über die Abfrage, beispielsweise die Spaltenanzahl ?
+    
+    - getColumnCount()
+___
+Mit der Klasse ResultSetMetaData können Metadaten des ResultSets ermittelt werden. Suchen 
+Sie in der API die wichtigsten Informationen heraus, die Sie ermitteln können!
+
+    siehe api doku
+___
+Überlegen Sie, warum Sie nicht die Anzahl an Zeilen (Datensätzen)
+eines ResultSets mit einer Methode aus der Klasse ResultSetMetaData ermitteln können.
+
+    Es wird line by line durch iterirt 
+___
+Erstellen Sie ein kleines Programm, welches die Struktur der Tabelle
+TMITGLIED, wie DESC TMIT-GLIED, auf der Konsole ausgibt.
+
+    - /

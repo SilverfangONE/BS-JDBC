@@ -2,7 +2,6 @@ package de.bs.jdbc.util;
 
 import org.nocrala.tools.texttablefmt.Table;
 
-import javax.print.attribute.standard.RequestingUserName;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -52,11 +51,14 @@ public class MYSQLManager {
     /**
      * reconnect to database if the session was closed
      *
-     * @return boolean
+     * @return boolean returns false if a session is already opened
      */
 
     public static boolean openSession() {
-        // TODO
+        if(session == null) {
+            connectionFactory();
+            return true;
+        }
         return false;
     }
 
@@ -105,7 +107,7 @@ public class MYSQLManager {
      */
 
     private static String getMetaData(DatabaseMetaData metaData) throws SQLException {
-        return new StringBuilder().append("Meta-Daten der " + metaData.getDatabaseProductName() + " DB:")
+    return new StringBuilder().append("Meta-Daten der " + metaData.getDatabaseProductName() + " DB:")
                 .append("\n")
                 .append("DB: " + metaData.getDatabaseProductName())
                 .append("\n")
