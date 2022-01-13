@@ -51,7 +51,7 @@ public class jdbc01cosConnect {
         resultSet.insertRow();
 
         // 3.)
-q^
+
         resultSet.updateDouble("gehalt", resultSet.getObject("gehalt", Double.class) * 1.05);
 
         // 4.)
