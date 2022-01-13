@@ -11,7 +11,7 @@ public class Jdbc01Connect {
 
     public static void main(String[] args) throws Exception {
         try {
-            Connection con = MYSQLManager.getSessionDB();
+            Connection con = MYSQLManager.getSession();
         } catch (Exception e) { e.printStackTrace(); }
         finally { MYSQLManager.close(); }
     }

@@ -133,7 +133,7 @@ public class MYSQLManager {
 
     // getter && setter
 
-    public static Connection getSessionDB() {
+    public static Connection getSession() {
         return session;
     }
 

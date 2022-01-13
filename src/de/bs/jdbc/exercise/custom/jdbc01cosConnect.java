@@ -2,6 +2,7 @@ package de.bs.jdbc.exercise.custom;
 
 import de.bs.jdbc.util.MYSQLManager;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,6 +17,7 @@ import java.sql.SQLException;
  *
  *  4) Mirarbeiter Huber löschen
  *
+ *  5) Erstellen eines Prepared-Statements, um nach dem Namen zu filtern.
  *
  */
 
@@ -60,5 +62,10 @@ public class jdbc01cosConnect {
 
         resultSet.deleteRow();
 
+        // 5.)
+
+        PreparedStatement pst = MYSQLManager.getSession().prepareStatement("SELECT * FROM RESULTTEST WHERE name = ?");
+        pst.setString(1, "Maier");
+        MYSQLManager.View.print(pst.executeQuery());
     }
 }
